@@ -55,7 +55,7 @@ namespace SmellyMarsRover
 
         protected bool Equals(Rover other)
         {
-            return direction.Value == other.direction.Value && coordinates.y == other.coordinates.y && coordinates.x == other.coordinates.x;
+            return Equals(coordinates, other.coordinates) && Equals(direction, other.direction);
         }
 
         public override int GetHashCode()
