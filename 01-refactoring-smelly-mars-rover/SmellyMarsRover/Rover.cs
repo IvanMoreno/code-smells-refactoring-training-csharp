@@ -19,15 +19,15 @@ namespace SmellyMarsRover
 
         public void Receive(string commandsSequence) // Primitive obsession
         {
-            ParseCommands2(commandsSequence).ForEach(ExecuteCommand2);
+            ParseCommands(commandsSequence).ForEach(ExecuteCommand);
         }
 
-        static List<RoverCommand> ParseCommands2(string commandsSequence)
+        static List<RoverCommand> ParseCommands(string commandsSequence)
         {
             return commandsSequence.Select((_, i) => new RoverCommand(commandsSequence.Substring(i, 1))).ToList();
         }
 
-        void ExecuteCommand2(RoverCommand command)
+        void ExecuteCommand(RoverCommand command)
         {
             if (command.value.Equals("l"))
             {
