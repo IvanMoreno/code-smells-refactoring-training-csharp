@@ -1,6 +1,6 @@
 namespace SmellyMarsRover;
 
-internal abstract record Direction(string Value)
+internal abstract record Direction
 {
     private const string NORTH = "N";
     private const string WEST = "W";
@@ -32,7 +32,7 @@ internal abstract record Direction(string Value)
 
     private record North : Direction
     {
-        public North() : base("N")
+        public North() : base()
         {
         }
 
@@ -52,7 +52,7 @@ internal abstract record Direction(string Value)
     
     private record South : Direction
     {
-        public South() : base("S")
+        public South() : base()
         {
         }
         
@@ -72,7 +72,7 @@ internal abstract record Direction(string Value)
     
     private record West : Direction
     {
-        public West() : base("W")
+        public West() : base()
         {
         }
         
@@ -92,7 +92,7 @@ internal abstract record Direction(string Value)
     
     private record East : Direction
     {
-        public East() : base("E")
+        public East() : base()
         {
         }
         
