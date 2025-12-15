@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace SmellyMarsRover
 {
+    public record CommandsSequence(string encodedCommands) {
+        
+    }
+    
     public class Rover
     {
         Coordinates coordinates;
@@ -19,10 +23,20 @@ namespace SmellyMarsRover
         {
             ParseCommands(commandsSequence).ForEach(command => command.ExecuteOn(this));
         }
+        
+        public void Receive(CommandsSequence commandsSequence) // Primitive obsession
+        {
+            ParseCommands(commandsSequence).ForEach(command => command.ExecuteOn(this));
+        }
 
         static List<RoverCommand> ParseCommands(string commandsSequence)
         {
             return commandsSequence.Select((_, i) => RoverCommandMapper.CreateInstance(commandsSequence.Substring(i, 1))).ToList();
+        }
+        
+        static List<RoverCommand> ParseCommands(CommandsSequence commandsSequence)
+        {
+            return commandsSequence.encodedCommands.Select((_, i) => RoverCommandMapper.CreateInstance(commandsSequence.encodedCommands.Substring(i, 1))).ToList();
         }
 
         public void MoveBackwards() {
