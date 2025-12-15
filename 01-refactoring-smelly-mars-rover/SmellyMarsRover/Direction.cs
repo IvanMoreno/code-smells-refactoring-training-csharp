@@ -2,29 +2,6 @@ namespace SmellyMarsRover;
 
 internal abstract record Direction
 {
-    private const string NORTH = "N";
-    private const string WEST = "W";
-    private const string SOUTH = "S";
-
-    public static Direction CreateInstance(string Value) {
-        if (Value.Equals(NORTH))
-        {
-            return North.Create();
-        }
-        
-        if (Value.Equals(SOUTH))
-        {
-            return South.Create();
-        }
-        
-        if (Value.Equals(WEST))
-        {
-            return West.Create();
-        }
-        
-        return East.Create();
-    }
-
     public abstract Direction RotateLeft();
     public abstract Direction RotateRight();
     public abstract Coordinates Move(int displacement, Coordinates from);
@@ -32,11 +9,11 @@ internal abstract record Direction
     internal record North : Direction
     {
         public override Direction RotateLeft() {
-            return West.Create();
+            return Direction.West.Create();
         }
 
         public override Direction RotateRight() {
-            return East.Create();
+            return Direction.East.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -44,19 +21,19 @@ internal abstract record Direction
             return new(from.x, from.y + displacement);
         }
 
-        public static North Create() {
-            return new North();
+        public static Direction.North Create() {
+            return new Direction.North();
         }
     }
     
     internal record South : Direction
     {
         public override Direction RotateLeft() {
-            return East.Create();
+            return Direction.East.Create();
         }
 
         public override Direction RotateRight() {
-            return West.Create();
+            return Direction.West.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -64,19 +41,19 @@ internal abstract record Direction
             return new(from.x, from.y - displacement);
         }
 
-        public static South Create() {
-            return new South();
+        public static Direction.South Create() {
+            return new Direction.South();
         }
     }
     
     internal record West : Direction
     {
         public override Direction RotateLeft() {
-            return South.Create();
+            return Direction.South.Create();
         }
 
         public override Direction RotateRight() {
-            return North.Create();
+            return Direction.North.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -84,19 +61,19 @@ internal abstract record Direction
             return new(from.x - displacement, from.y);
         }
 
-        public static West Create() {
-            return new West();
+        public static Direction.West Create() {
+            return new Direction.West();
         }
     }
     
     internal record East : Direction
     {
         public override Direction RotateLeft() {
-            return North.Create();
+            return Direction.North.Create();
         }
 
         public override Direction RotateRight() {
-            return South.Create();
+            return Direction.South.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -104,8 +81,8 @@ internal abstract record Direction
             return new(from.x + displacement, from.y);
         }
 
-        public static East Create() {
-            return new East();
+        public static Direction.East Create() {
+            return new Direction.East();
         }
     }
 }
