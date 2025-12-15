@@ -15,6 +15,21 @@ internal record Direction(string Value)
             return new North();
         }
         
+        if (Value.Equals(SOUTH))
+        {
+            return new South();
+        }
+        
+        if (Value.Equals(WEST))
+        {
+            return new West();
+        }
+        
+        if (Value.Equals(EAST))
+        {
+            return new East();
+        }
+        
         return new Direction(Value);
     }
 
@@ -26,15 +41,15 @@ internal record Direction(string Value)
 
         if (Value.Equals(SOUTH))
         {
-            return CreateInstance(EAST);
+            throw new NotImplementedException("Should be unreachable");
         }
         
         if (Value.Equals(WEST))
         {
-            return CreateInstance(SOUTH);
+            throw new NotImplementedException("Should be unreachable");
         }
         
-        return CreateInstance(NORTH);
+        throw new NotImplementedException("Should be unreachable");
     }
 
     public Direction RotateRight()
@@ -85,6 +100,39 @@ internal record Direction(string Value)
 
         public override Direction RotateLeft() {
             return CreateInstance(WEST);
+        }
+    }
+    
+    private record South : Direction
+    {
+        public South() : base("S")
+        {
+        }
+        
+        public override Direction RotateLeft() {
+            return CreateInstance(EAST);
+        }
+    }
+    
+    private record West : Direction
+    {
+        public West() : base("W")
+        {
+        }
+        
+        public override Direction RotateLeft() {
+            return CreateInstance(SOUTH);
+        }
+    }
+    
+    private record East : Direction
+    {
+        public East() : base("E")
+        {
+        }
+        
+        public override Direction RotateLeft() {
+            return CreateInstance(NORTH);
         }
     }
 }
