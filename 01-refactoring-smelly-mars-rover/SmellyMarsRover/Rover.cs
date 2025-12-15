@@ -27,39 +27,43 @@ namespace SmellyMarsRover
             return commandsSequence.Select((_, i) => new RoverCommand(commandsSequence.Substring(i, 1))).ToList();
         }
 
-        void ExecuteCommand(RoverCommand command)
-        {
+        void ExecuteCommand(RoverCommand command) {
+            Rover rover = this;
+            Execute2(command, rover);
+        }
+
+        private void Execute2(RoverCommand command, Rover rover) {
             if (command.value.Equals("l"))
             {
-                RotateLeft();
+                rover.RotateLeft();
             }
             else if (command.value.Equals("r")) // Magic literal
             {
-                RotateRight();
+                rover.RotateRight();
             }
             else if (command.value.Equals("f"))
             {
-                MoveForward();
+                rover.MoveForward();
             }
             else
             {
-                MoveBackwards();
+                rover.MoveBackwards();
             }
         }
 
-        private void MoveBackwards() {
+        public void MoveBackwards() {
             coordinates = direction.Move(-1, coordinates);
         }
 
-        private void MoveForward() {
+        public void MoveForward() {
             coordinates = direction.Move(1, coordinates);
         }
 
-        private void RotateRight() {
+        public void RotateRight() {
             direction = direction.RotateRight();
         }
 
-        private void RotateLeft() {
+        public void RotateLeft() {
             direction = direction.RotateLeft();
         }
 
