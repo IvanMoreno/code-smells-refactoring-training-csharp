@@ -1,15 +1,26 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SmellyMarsRover
 {
-    public record CommandsSequence(string encodedCommands) {
-        public static implicit operator CommandsSequence(string encodedCommands) => new(encodedCommands);
+    public record CommandsSequence(string encodedCommands, List<RoverCommand> commands) : IEnumerable<RoverCommand> {
+        public static implicit operator CommandsSequence(string encodedCommands) => Create(encodedCommands);
 
-        public List<RoverCommand> ParseCommands()
+        public static CommandsSequence Create(string encodedCommands) => new(encodedCommands, ParseCommands(encodedCommands));
+
+        public static List<RoverCommand> ParseCommands(string encodedCommands)
         {
             return encodedCommands.Select((_, i) => RoverCommandMapper.CreateInstance(encodedCommands.Substring(i, 1))).ToList();
+        }
+
+        public IEnumerator<RoverCommand> GetEnumerator() {
+            return commands.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
     }
     
@@ -26,7 +37,7 @@ namespace SmellyMarsRover
         
         public void Receive(CommandsSequence commandsSequence)
         {
-            commandsSequence.ParseCommands().ForEach(command => command.ExecuteOn(this));
+            commandsSequence.ToList().ForEach(command => command.ExecuteOn(this));
         }
 
         public void MoveBackwards() {
