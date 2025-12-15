@@ -30,27 +30,8 @@ internal abstract record Direction(string Value)
 
     public abstract Direction RotateLeft();
     public abstract Direction RotateRight();
+    public abstract Coordinates Move(int displacement, Coordinates from);
 
-    public Coordinates Move(int displacement, Coordinates from)
-    {
-        if (Value.Equals(NORTH))
-        {
-            return new(from.x, from.y + displacement);
-        }
-
-        if (Value.Equals(SOUTH))
-        {
-            return new(from.x, from.y - displacement);
-        }
-        
-        if (Value.Equals(WEST))
-        {
-            return new(from.x - displacement, from.y);
-        }
-        
-        return new(from.x + displacement, from.y);
-    }
-    
     private record North : Direction
     {
         public North() : base("N")
@@ -63,6 +44,11 @@ internal abstract record Direction(string Value)
         
         public override Direction RotateRight() {
             return CreateInstance(EAST);
+        }
+        
+        public override Coordinates Move(int displacement, Coordinates from)
+        {
+            return new(from.x, from.y + displacement);
         }
     }
     
@@ -79,6 +65,11 @@ internal abstract record Direction(string Value)
         public override Direction RotateRight() {
             return CreateInstance(WEST);
         }
+        
+        public override Coordinates Move(int displacement, Coordinates from)
+        {
+            return new(from.x, from.y - displacement);
+        }
     }
     
     private record West : Direction
@@ -94,6 +85,11 @@ internal abstract record Direction(string Value)
         public override Direction RotateRight() {
             return CreateInstance(NORTH);
         }
+        
+        public override Coordinates Move(int displacement, Coordinates from)
+        {
+            return new(from.x - displacement, from.y);
+        }
     }
     
     private record East : Direction
@@ -108,6 +104,11 @@ internal abstract record Direction(string Value)
         
         public override Direction RotateRight() {
             return CreateInstance(SOUTH);
+        }
+        
+        public override Coordinates Move(int displacement, Coordinates from)
+        {
+            return new(from.x + displacement, from.y);
         }
     }
 }
