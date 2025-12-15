@@ -2,40 +2,57 @@
 
 namespace SmellyMarsRover;
 
-internal record RoverCommand(string value) {
+internal abstract record RoverCommand(string value) {
     public static RoverCommand CreateInstance(string value) {
         if (value.Equals("l"))
         {
             return new RotateLeftCommand();
         }
         
-        return new RoverCommand(value);
+        if (value.Equals("r"))
+        {
+            return new RotateRightCommand();
+        }
+        
+        if (value.Equals("f"))
+        {
+            return new MoveForwardCommand();
+        }
+        
+        return new MoveBackwardCommand();
     }
 
-    public virtual void ExecuteOn(Rover rover) {
-        if (value.Equals("l"))
-        {
-            throw new InvalidOperationException("Use RotateLeftCommand for 'l' command");
-        }
-        else if (value.Equals("r")) // Magic literal
-        {
-            rover.RotateRight();
-        }
-        else if (value.Equals("f"))
-        {
-            rover.MoveForward();
-        }
-        else
-        {
-            rover.MoveBackwards();
-        }
-    }
+    public abstract void ExecuteOn(Rover rover);
 
     internal record RotateLeftCommand : RoverCommand {
         public RotateLeftCommand() : base("l") { }
         
         public override void ExecuteOn(Rover rover) {
             rover.RotateLeft();
+        }
+    }
+    
+    internal record RotateRightCommand : RoverCommand {
+        public RotateRightCommand() : base("r") { }
+        
+        public override void ExecuteOn(Rover rover) {
+            rover.RotateRight();
+        }
+    }
+    
+    internal record MoveForwardCommand : RoverCommand {
+        public MoveForwardCommand() : base("f") { }
+        
+        public override void ExecuteOn(Rover rover) {
+            rover.MoveForward();
+        }
+    }
+    
+    internal record MoveBackwardCommand : RoverCommand {
+        public MoveBackwardCommand() : base("b") { }
+        
+        public override void ExecuteOn(Rover rover) {
+            rover.MoveBackwards();
         }
     }
 }
