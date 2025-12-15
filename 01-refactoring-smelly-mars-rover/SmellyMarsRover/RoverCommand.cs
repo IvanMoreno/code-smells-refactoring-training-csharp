@@ -1,6 +1,6 @@
 ﻿namespace SmellyMarsRover;
 
-internal abstract record RoverCommand {
+public abstract record RoverCommand {
     public abstract void ExecuteOn(Rover rover);
 
     internal record RotateLeft : RoverCommand {

@@ -6,6 +6,11 @@ namespace SmellyMarsRover
 {
     public record CommandsSequence(string encodedCommands) {
         public static implicit operator CommandsSequence(string encodedCommands) => new(encodedCommands);
+
+        public List<RoverCommand> ParseCommands()
+        {
+            return encodedCommands.Select((_, i) => RoverCommandMapper.CreateInstance(encodedCommands.Substring(i, 1))).ToList();
+        }
     }
     
     public class Rover
@@ -21,12 +26,7 @@ namespace SmellyMarsRover
         
         public void Receive(CommandsSequence commandsSequence)
         {
-            ParseCommands(commandsSequence).ForEach(command => command.ExecuteOn(this));
-        }
-
-        static List<RoverCommand> ParseCommands(CommandsSequence commandsSequence)
-        {
-            return commandsSequence.encodedCommands.Select((_, i) => RoverCommandMapper.CreateInstance(commandsSequence.encodedCommands.Substring(i, 1))).ToList();
+            commandsSequence.ParseCommands().ForEach(command => command.ExecuteOn(this));
         }
 
         public void MoveBackwards() {
