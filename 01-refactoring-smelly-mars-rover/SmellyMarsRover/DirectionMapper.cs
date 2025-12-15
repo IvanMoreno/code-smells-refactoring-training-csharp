@@ -1,22 +1,18 @@
 ﻿namespace SmellyMarsRover;
 
 internal static class DirectionMapper {
-    private const string NORTH = "N";
-    private const string WEST = "W";
-    private const string SOUTH = "S";
-
     public static Direction CreateInstance(string encodedDirection) {
-        if (encodedDirection.Equals(NORTH))
+        if (encodedDirection.Equals("N"))
         {
             return Direction.North.Create();
         }
         
-        if (encodedDirection.Equals(SOUTH))
+        if (encodedDirection.Equals("S"))
         {
             return Direction.South.Create();
         }
         
-        if (encodedDirection.Equals(WEST))
+        if (encodedDirection.Equals("W"))
         {
             return Direction.West.Create();
         }
