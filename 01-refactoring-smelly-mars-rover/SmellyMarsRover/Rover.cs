@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace SmellyMarsRover
 {
-    public record CommandsSequence(string encodedCommands, List<RoverCommand> commands) : IEnumerable<RoverCommand> {
+    public record CommandsSequence(List<RoverCommand> Commands) : IEnumerable<RoverCommand> {
         public static implicit operator CommandsSequence(string encodedCommands) => Create(encodedCommands);
 
-        public static CommandsSequence Create(string encodedCommands) => new(encodedCommands, ParseCommands(encodedCommands));
+        public static CommandsSequence Create(string encodedCommands) => new(ParseCommands(encodedCommands));
 
         public static List<RoverCommand> ParseCommands(string encodedCommands)
         {
@@ -16,7 +16,7 @@ namespace SmellyMarsRover
         }
 
         public IEnumerator<RoverCommand> GetEnumerator() {
-            return commands.GetEnumerator();
+            return Commands.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
