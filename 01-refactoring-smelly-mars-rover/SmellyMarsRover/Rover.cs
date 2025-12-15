@@ -11,7 +11,7 @@ namespace SmellyMarsRover
 
         public Rover(int x, int y, string direction)
         {
-            this.direction = new(direction);
+            this.direction = Direction.CreateInstance(direction);
             coordinates = new(x, y);
         }
 
