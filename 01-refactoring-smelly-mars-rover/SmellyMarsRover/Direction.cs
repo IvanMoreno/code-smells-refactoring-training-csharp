@@ -9,11 +9,11 @@ internal abstract record Direction
     internal record North : Direction
     {
         public override Direction RotateLeft() {
-            return Direction.West.Create();
+            return West.Create();
         }
 
         public override Direction RotateRight() {
-            return Direction.East.Create();
+            return East.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -21,19 +21,19 @@ internal abstract record Direction
             return new(from.x, from.y + displacement);
         }
 
-        public static Direction.North Create() {
-            return new Direction.North();
+        public static North Create() {
+            return new North();
         }
     }
     
     internal record South : Direction
     {
         public override Direction RotateLeft() {
-            return Direction.East.Create();
+            return East.Create();
         }
 
         public override Direction RotateRight() {
-            return Direction.West.Create();
+            return West.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -41,19 +41,19 @@ internal abstract record Direction
             return new(from.x, from.y - displacement);
         }
 
-        public static Direction.South Create() {
-            return new Direction.South();
+        public static South Create() {
+            return new South();
         }
     }
     
     internal record West : Direction
     {
         public override Direction RotateLeft() {
-            return Direction.South.Create();
+            return South.Create();
         }
 
         public override Direction RotateRight() {
-            return Direction.North.Create();
+            return North.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -61,19 +61,19 @@ internal abstract record Direction
             return new(from.x - displacement, from.y);
         }
 
-        public static Direction.West Create() {
-            return new Direction.West();
+        public static West Create() {
+            return new West();
         }
     }
     
     internal record East : Direction
     {
         public override Direction RotateLeft() {
-            return Direction.North.Create();
+            return North.Create();
         }
 
         public override Direction RotateRight() {
-            return Direction.South.Create();
+            return South.Create();
         }
 
         public override Coordinates Move(int displacement, Coordinates from)
@@ -81,8 +81,8 @@ internal abstract record Direction
             return new(from.x + displacement, from.y);
         }
 
-        public static Direction.East Create() {
-            return new Direction.East();
+        public static East Create() {
+            return new East();
         }
     }
 }
