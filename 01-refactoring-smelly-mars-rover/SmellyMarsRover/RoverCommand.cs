@@ -12,14 +12,6 @@ public abstract record RoverCommand {
     }
     
     internal record Move(int Displacement) : RoverCommand {
-        public override void ExecuteOn(Rover rover) {
-            rover.Move(Displacement);
-        }
-    }
-    
-    internal record MoveForward() : Move(1) {
-    }
-    
-    internal record MoveBackward() : Move(-1) {
+        public override void ExecuteOn(Rover rover) => rover.Move(Displacement);
     }
 }
