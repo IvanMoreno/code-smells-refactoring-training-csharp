@@ -1,10 +1,21 @@
-﻿namespace SmellyMarsRover;
+﻿using System;
 
-public record RoverCommand(string value) {
-    public void ExecuteOn(Rover rover) {
+namespace SmellyMarsRover;
+
+internal record RoverCommand(string value) {
+    public static RoverCommand CreateInstance(string value) {
         if (value.Equals("l"))
         {
-            rover.RotateLeft();
+            return new RotateLeftCommand();
+        }
+        
+        return new RoverCommand(value);
+    }
+
+    public virtual void ExecuteOn(Rover rover) {
+        if (value.Equals("l"))
+        {
+            throw new InvalidOperationException("Use RotateLeftCommand for 'l' command");
         }
         else if (value.Equals("r")) // Magic literal
         {
@@ -17,6 +28,14 @@ public record RoverCommand(string value) {
         else
         {
             rover.MoveBackwards();
+        }
+    }
+
+    internal record RotateLeftCommand : RoverCommand {
+        public RotateLeftCommand() : base("l") { }
+        
+        public override void ExecuteOn(Rover rover) {
+            rover.RotateLeft();
         }
     }
 }
