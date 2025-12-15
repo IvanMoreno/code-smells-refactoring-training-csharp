@@ -3,19 +3,19 @@
 internal abstract record RoverCommand {
     public abstract void ExecuteOn(Rover rover);
 
-    internal record RotateLeftCommand : RoverCommand {
+    internal record RotateLeft : RoverCommand {
         public override void ExecuteOn(Rover rover) => rover.RotateLeft();
     }
     
-    internal record RotateRightCommand : RoverCommand {
+    internal record RotateRight : RoverCommand {
         public override void ExecuteOn(Rover rover) => rover.RotateRight();
     }
     
-    internal record MoveForwardCommand : RoverCommand {
+    internal record MoveForward : RoverCommand {
         public override void ExecuteOn(Rover rover) => rover.MoveForward();
     }
     
-    internal record MoveBackwardCommand : RoverCommand {
+    internal record MoveBackward : RoverCommand {
         public override void ExecuteOn(Rover rover) => rover.MoveBackwards();
     }
 }

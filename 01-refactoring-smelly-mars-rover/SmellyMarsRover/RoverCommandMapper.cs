@@ -4,19 +4,19 @@ internal static class RoverCommandMapper {
     public static RoverCommand CreateInstance(string encodedCommand) {
         if (encodedCommand.Equals("l"))
         {
-            return new RoverCommand.RotateLeftCommand();
+            return new RoverCommand.RotateLeft();
         }
         
         if (encodedCommand.Equals("r"))
         {
-            return new RoverCommand.RotateRightCommand();
+            return new RoverCommand.RotateRight();
         }
         
         if (encodedCommand.Equals("f"))
         {
-            return new RoverCommand.MoveForwardCommand();
+            return new RoverCommand.MoveForward();
         }
         
-        return new RoverCommand.MoveBackwardCommand();
+        return new RoverCommand.MoveBackward();
     }
 }
