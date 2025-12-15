@@ -31,20 +31,36 @@ namespace SmellyMarsRover
         {
             if (command.value.Equals("l"))
             {
-                direction = direction.RotateLeft();
+                RotateLeft();
             }
             else if (command.value.Equals("r")) // Magic literal
             {
-                direction = direction.RotateRight();
+                RotateRight();
             }
             else if (command.value.Equals("f"))
             {
-                coordinates = direction.Move(1, coordinates);
+                MoveForward();
             }
             else
             {
-                coordinates = direction.Move(-1, coordinates);
+                MoveBackwards();
             }
+        }
+
+        private void MoveBackwards() {
+            coordinates = direction.Move(-1, coordinates);
+        }
+
+        private void MoveForward() {
+            coordinates = direction.Move(1, coordinates);
+        }
+
+        private void RotateRight() {
+            direction = direction.RotateRight();
+        }
+
+        private void RotateLeft() {
+            direction = direction.RotateLeft();
         }
 
         public override bool Equals(object obj)
