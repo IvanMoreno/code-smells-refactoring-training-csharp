@@ -1,22 +1,11 @@
 ﻿namespace SmellyMarsRover;
 
 internal static class RoverCommandMapper {
-    public static RoverCommand CreateInstance(string encodedCommand) {
-        if (encodedCommand.Equals("l"))
-        {
-            return new RoverCommand.RotateLeft();
-        }
-        
-        if (encodedCommand.Equals("r"))
-        {
-            return new RoverCommand.RotateRight();
-        }
-        
-        if (encodedCommand.Equals("f"))
-        {
-            return new RoverCommand.MoveForward();
-        }
-        
-        return new RoverCommand.MoveBackward();
-    }
+    public static RoverCommand CreateInstance(string encodedCommand) =>
+            encodedCommand switch {
+                    "l" => new RoverCommand.RotateLeft(),
+                    "r" => new RoverCommand.RotateRight(),
+                    "f" => new RoverCommand.MoveForward(),
+                    _ => new RoverCommand.MoveBackward()
+            };
 }
