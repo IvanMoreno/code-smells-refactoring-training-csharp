@@ -30,7 +30,7 @@ internal abstract record Direction
     public abstract Direction RotateRight();
     public abstract Coordinates Move(int displacement, Coordinates from);
 
-    private record North : Direction
+    internal record North : Direction
     {
         public override Direction RotateLeft() {
             return CreateInstance(WEST);
@@ -46,7 +46,7 @@ internal abstract record Direction
         }
     }
     
-    private record South : Direction
+    internal record South : Direction
     {
         public override Direction RotateLeft() {
             return CreateInstance(EAST);
@@ -62,7 +62,7 @@ internal abstract record Direction
         }
     }
     
-    private record West : Direction
+    internal record West : Direction
     {
         public override Direction RotateLeft() {
             return CreateInstance(SOUTH);
@@ -78,7 +78,7 @@ internal abstract record Direction
         }
     }
     
-    private record East : Direction
+    internal record East : Direction
     {
         public override Direction RotateLeft() {
             return CreateInstance(NORTH);
