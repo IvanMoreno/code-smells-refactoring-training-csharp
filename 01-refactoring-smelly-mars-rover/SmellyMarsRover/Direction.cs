@@ -5,7 +5,6 @@ internal abstract record Direction
     private const string NORTH = "N";
     private const string WEST = "W";
     private const string SOUTH = "S";
-    private const string EAST = "E";
 
     public static Direction CreateInstance(string Value) {
         if (Value.Equals(NORTH))
