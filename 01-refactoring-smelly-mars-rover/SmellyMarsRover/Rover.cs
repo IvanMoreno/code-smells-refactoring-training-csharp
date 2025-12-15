@@ -22,7 +22,7 @@ namespace SmellyMarsRover
 
         static List<RoverCommand> ParseCommands(string commandsSequence)
         {
-            return commandsSequence.Select((_, i) => RoverCommand.CreateInstance(commandsSequence.Substring(i, 1))).ToList();
+            return commandsSequence.Select((_, i) => RoverCommandMapper.CreateInstance(commandsSequence.Substring(i, 1))).ToList();
         }
 
         public void MoveBackwards() {
