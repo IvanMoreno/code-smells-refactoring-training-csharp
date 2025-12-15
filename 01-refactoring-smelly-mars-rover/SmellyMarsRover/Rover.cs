@@ -17,7 +17,7 @@ namespace SmellyMarsRover
 
         public void Receive(string commandsSequence) // Primitive obsession
         {
-            ParseCommands(commandsSequence).ForEach(command => command.Execute(this));
+            ParseCommands(commandsSequence).ForEach(command => command.ExecuteOn(this));
         }
 
         static List<RoverCommand> ParseCommands(string commandsSequence)

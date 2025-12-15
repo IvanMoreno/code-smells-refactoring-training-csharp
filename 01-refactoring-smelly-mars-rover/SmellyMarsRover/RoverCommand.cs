@@ -1,7 +1,7 @@
 ﻿namespace SmellyMarsRover;
 
 public record RoverCommand(string value) {
-    public void Execute(Rover rover) {
+    public void ExecuteOn(Rover rover) {
         if (value.Equals("l"))
         {
             rover.RotateLeft();
