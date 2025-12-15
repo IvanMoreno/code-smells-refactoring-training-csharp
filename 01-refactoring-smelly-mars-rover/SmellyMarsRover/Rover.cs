@@ -26,7 +26,7 @@ namespace SmellyMarsRover
         }
 
         void ExecuteCommand(RoverCommand command) {
-            command.Execute2(this);
+            command.Execute(this);
         }
 
         public void MoveBackwards() {
