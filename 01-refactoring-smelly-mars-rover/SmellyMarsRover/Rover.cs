@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace SmellyMarsRover
 {
-    public record CommandsSequence(List<RoverCommand> Commands) : IEnumerable<RoverCommand> {
+    public record CommandsSequence(IEnumerable<RoverCommand> Commands) : IEnumerable<RoverCommand> {
         public static implicit operator CommandsSequence(string encodedCommands) => Create(encodedCommands);
 
         public static CommandsSequence Create(string encodedCommands) => new(ParseCommands(encodedCommands));
 
-        public static List<RoverCommand> ParseCommands(string encodedCommands)
+        public static IEnumerable<RoverCommand> ParseCommands(string encodedCommands)
         {
-            return encodedCommands.Select((_, i) => RoverCommandMapper.CreateInstance(encodedCommands.Substring(i, 1))).ToList();
+            return encodedCommands.Select(i => RoverCommandMapper.CreateInstance(i.ToString()));
         }
 
         public IEnumerator<RoverCommand> GetEnumerator() {
