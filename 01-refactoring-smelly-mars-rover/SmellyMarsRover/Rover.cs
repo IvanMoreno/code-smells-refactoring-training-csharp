@@ -25,7 +25,7 @@ namespace SmellyMarsRover
             return commandsSequence.Select((_, i) => commandsSequence.Substring(i, 1)).ToList();
         }
 
-        void ExecuteCommand(string command)
+        void ExecuteCommand(string command) // Primitive obsession
         {
             if (command.Equals("l"))
             {
