@@ -22,37 +22,12 @@ namespace SmellyMarsRover
             ParseCommands2(commandsSequence).ForEach(ExecuteCommand2);
         }
 
-        static List<string> ParseCommands(string commandsSequence)
-        {
-            return commandsSequence.Select((_, i) => commandsSequence.Substring(i, 1)).ToList();
-        }
-        
         static List<RoverCommand> ParseCommands2(string commandsSequence)
         {
             return commandsSequence.Select((_, i) => new RoverCommand(commandsSequence.Substring(i, 1))).ToList();
         }
 
-        void ExecuteCommand(string command) // Primitive obsession
-        {
-            if (command.Equals("l"))
-            {
-                direction = direction.RotateLeft();
-            }
-            else if (command.Equals("r")) // Magic literal
-            {
-                direction = direction.RotateRight();
-            }
-            else if (command.Equals("f"))
-            {
-                coordinates = direction.Move(1, coordinates);
-            }
-            else
-            {
-                coordinates = direction.Move(-1, coordinates);
-            }
-        }
-        
-        void ExecuteCommand2(RoverCommand command) // Primitive obsession
+        void ExecuteCommand2(RoverCommand command)
         {
             if (command.value.Equals("l"))
             {
