@@ -29,26 +29,7 @@ internal abstract record Direction(string Value)
     }
 
     public abstract Direction RotateLeft();
-
-    public Direction RotateRight()
-    {
-        if (Value.Equals(NORTH))
-        {
-            return CreateInstance(EAST);
-        }
-
-        if (Value.Equals(SOUTH))
-        {
-            return CreateInstance(WEST);
-        }
-        
-        if (Value.Equals(WEST))
-        {
-            return CreateInstance(NORTH);
-        }
-        
-        return CreateInstance(SOUTH);
-    }
+    public abstract Direction RotateRight();
 
     public Coordinates Move(int displacement, Coordinates from)
     {
@@ -79,6 +60,10 @@ internal abstract record Direction(string Value)
         public override Direction RotateLeft() {
             return CreateInstance(WEST);
         }
+        
+        public override Direction RotateRight() {
+            return CreateInstance(EAST);
+        }
     }
     
     private record South : Direction
@@ -89,6 +74,10 @@ internal abstract record Direction(string Value)
         
         public override Direction RotateLeft() {
             return CreateInstance(EAST);
+        }
+        
+        public override Direction RotateRight() {
+            return CreateInstance(WEST);
         }
     }
     
@@ -101,6 +90,10 @@ internal abstract record Direction(string Value)
         public override Direction RotateLeft() {
             return CreateInstance(SOUTH);
         }
+        
+        public override Direction RotateRight() {
+            return CreateInstance(NORTH);
+        }
     }
     
     private record East : Direction
@@ -111,6 +104,10 @@ internal abstract record Direction(string Value)
         
         public override Direction RotateLeft() {
             return CreateInstance(NORTH);
+        }
+        
+        public override Direction RotateRight() {
+            return CreateInstance(SOUTH);
         }
     }
 }
