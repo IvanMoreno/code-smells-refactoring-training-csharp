@@ -2,7 +2,7 @@ using System;
 
 namespace SmellyMarsRover;
 
-internal record Direction(string Value)
+internal abstract record Direction(string Value)
 {
     private const string NORTH = "N";
     private const string WEST = "W";
@@ -25,32 +25,10 @@ internal record Direction(string Value)
             return new West();
         }
         
-        if (Value.Equals(EAST))
-        {
-            return new East();
-        }
-        
-        return new Direction(Value);
+        return new East();
     }
 
-    public virtual Direction RotateLeft()
-    {
-        if (Value.Equals(NORTH)) {
-            throw new NotImplementedException("Should be unreachable");
-        }
-
-        if (Value.Equals(SOUTH))
-        {
-            throw new NotImplementedException("Should be unreachable");
-        }
-        
-        if (Value.Equals(WEST))
-        {
-            throw new NotImplementedException("Should be unreachable");
-        }
-        
-        throw new NotImplementedException("Should be unreachable");
-    }
+    public abstract Direction RotateLeft();
 
     public Direction RotateRight()
     {
