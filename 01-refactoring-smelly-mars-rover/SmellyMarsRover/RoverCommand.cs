@@ -1,18 +1,18 @@
 ﻿namespace SmellyMarsRover;
 
-internal abstract record RoverCommand() {
-    public static RoverCommand CreateInstance(string value) {
-        if (value.Equals("l"))
+internal abstract record RoverCommand {
+    public static RoverCommand CreateInstance(string encodedCommand) {
+        if (encodedCommand.Equals("l"))
         {
             return new RotateLeftCommand();
         }
         
-        if (value.Equals("r"))
+        if (encodedCommand.Equals("r"))
         {
             return new RotateRightCommand();
         }
         
-        if (value.Equals("f"))
+        if (encodedCommand.Equals("f"))
         {
             return new MoveForwardCommand();
         }
