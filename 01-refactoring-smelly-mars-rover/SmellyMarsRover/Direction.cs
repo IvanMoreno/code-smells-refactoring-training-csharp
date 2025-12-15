@@ -1,5 +1,3 @@
-using System;
-
 namespace SmellyMarsRover;
 
 internal abstract record Direction(string Value)
