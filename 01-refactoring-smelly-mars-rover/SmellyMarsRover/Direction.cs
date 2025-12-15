@@ -2,59 +2,64 @@ namespace SmellyMarsRover;
 
 internal record Direction(string Value)
 {
+    private const string NORTH = "N";
+    private const string WEST = "W";
+    private const string SOUTH = "S";
+    private const string EAST = "E";
+
     public Direction RotateLeft()
     {
-        if (Value.Equals("N"))
+        if (Value.Equals(NORTH))
         {
-            return new("W");
+            return new(WEST);
         }
 
-        if (Value.Equals("S"))
+        if (Value.Equals(SOUTH))
         {
-            return new("E");
+            return new(EAST);
         }
         
-        if (Value.Equals("W"))
+        if (Value.Equals(WEST))
         {
-            return new("S");
+            return new(SOUTH);
         }
         
-        return new("N");
+        return new(NORTH);
     }
 
     public Direction RotateRight()
     {
-        if (Value.Equals("N"))
+        if (Value.Equals(NORTH))
         {
-            return new("E");
+            return new(EAST);
         }
 
-        if (Value.Equals("S"))
+        if (Value.Equals(SOUTH))
         {
-            return new("W");
+            return new(WEST);
         }
         
-        if (Value.Equals("W"))
+        if (Value.Equals(WEST))
         {
-            return new("N");
+            return new(NORTH);
         }
         
-        return new("S");
+        return new(SOUTH);
     }
 
     public Coordinates Move(int displacement, Coordinates from)
     {
-        if (Value.Equals("N"))
+        if (Value.Equals(NORTH))
         {
             return new(from.x, from.y + displacement);
         }
 
-        if (Value.Equals("S"))
+        if (Value.Equals(SOUTH))
         {
             return new(from.x, from.y - displacement);
         }
         
-        if (Value.Equals("W"))
+        if (Value.Equals(WEST))
         {
             return new(from.x - displacement, from.y);
         }
