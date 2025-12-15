@@ -12,8 +12,7 @@ namespace SmellyMarsRover {
         }
 
         public void Receive(CommandsSequence commandsSequence) => commandsSequence.ToList().ForEach(command => command.ExecuteOn(this));
-        public void MoveBackwards() => coordinates = direction.Move(-1, coordinates);
-        public void MoveForward() => coordinates = direction.Move(1, coordinates);
+        public void Move(int displacement) => coordinates = direction.Move(displacement, coordinates);
         public void RotateRight() => direction = direction.RotateRight();
         public void RotateLeft() => direction = direction.RotateLeft();
 

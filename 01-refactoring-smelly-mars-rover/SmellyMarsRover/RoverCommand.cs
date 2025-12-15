@@ -12,10 +12,10 @@ public abstract record RoverCommand {
     }
     
     internal record MoveForward : RoverCommand {
-        public override void ExecuteOn(Rover rover) => rover.MoveForward();
+        public override void ExecuteOn(Rover rover) => rover.Move(1);
     }
     
     internal record MoveBackward : RoverCommand {
-        public override void ExecuteOn(Rover rover) => rover.MoveBackwards();
+        public override void ExecuteOn(Rover rover) => rover.Move(-1);
     }
 }
