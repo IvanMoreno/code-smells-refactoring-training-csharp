@@ -32,10 +32,6 @@ internal abstract record Direction
 
     private record North : Direction
     {
-        public North() : base()
-        {
-        }
-
         public override Direction RotateLeft() {
             return CreateInstance(WEST);
         }
@@ -52,10 +48,6 @@ internal abstract record Direction
     
     private record South : Direction
     {
-        public South() : base()
-        {
-        }
-        
         public override Direction RotateLeft() {
             return CreateInstance(EAST);
         }
@@ -72,10 +64,6 @@ internal abstract record Direction
     
     private record West : Direction
     {
-        public West() : base()
-        {
-        }
-        
         public override Direction RotateLeft() {
             return CreateInstance(SOUTH);
         }
@@ -92,10 +80,6 @@ internal abstract record Direction
     
     private record East : Direction
     {
-        public East() : base()
-        {
-        }
-        
         public override Direction RotateLeft() {
             return CreateInstance(NORTH);
         }
