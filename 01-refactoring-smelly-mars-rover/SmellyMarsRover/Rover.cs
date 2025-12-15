@@ -5,7 +5,7 @@ using System.Linq;
 namespace SmellyMarsRover
 {
     public record CommandsSequence(string encodedCommands) {
-        
+        public static implicit operator CommandsSequence(string encodedCommands) => new(encodedCommands);
     }
     
     public class Rover
@@ -18,22 +18,12 @@ namespace SmellyMarsRover
             this.direction = DirectionMapper.CreateInstance(direction);
             coordinates = new(x, y);
         }
-
-        public void Receive(string commandsSequence) // Primitive obsession
-        {
-            ParseCommands(commandsSequence).ForEach(command => command.ExecuteOn(this));
-        }
         
-        public void Receive(CommandsSequence commandsSequence) // Primitive obsession
+        public void Receive(CommandsSequence commandsSequence)
         {
             ParseCommands(commandsSequence).ForEach(command => command.ExecuteOn(this));
         }
 
-        static List<RoverCommand> ParseCommands(string commandsSequence)
-        {
-            return commandsSequence.Select((_, i) => RoverCommandMapper.CreateInstance(commandsSequence.Substring(i, 1))).ToList();
-        }
-        
         static List<RoverCommand> ParseCommands(CommandsSequence commandsSequence)
         {
             return commandsSequence.encodedCommands.Select((_, i) => RoverCommandMapper.CreateInstance(commandsSequence.encodedCommands.Substring(i, 1))).ToList();
