@@ -1,3 +1,5 @@
+using System;
+
 namespace SmellyMarsRover;
 
 internal record Direction(string Value)
@@ -8,14 +10,18 @@ internal record Direction(string Value)
     private const string EAST = "E";
 
     public static Direction CreateInstance(string Value) {
+        if (Value.Equals(NORTH))
+        {
+            return new North();
+        }
+        
         return new Direction(Value);
     }
 
     public virtual Direction RotateLeft()
     {
-        if (Value.Equals(NORTH))
-        {
-            return CreateInstance(WEST);
+        if (Value.Equals(NORTH)) {
+            throw new NotImplementedException("Should be unreachable");
         }
 
         if (Value.Equals(SOUTH))
