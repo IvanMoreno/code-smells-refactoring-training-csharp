@@ -5,18 +5,18 @@ internal static class DirectionMapper {
     private const string WEST = "W";
     private const string SOUTH = "S";
 
-    public static Direction CreateInstance(string value) {
-        if (value.Equals(NORTH))
+    public static Direction CreateInstance(string encodedDirection) {
+        if (encodedDirection.Equals(NORTH))
         {
             return Direction.North.Create();
         }
         
-        if (value.Equals(SOUTH))
+        if (encodedDirection.Equals(SOUTH))
         {
             return Direction.South.Create();
         }
         
-        if (value.Equals(WEST))
+        if (encodedDirection.Equals(WEST))
         {
             return Direction.West.Create();
         }
