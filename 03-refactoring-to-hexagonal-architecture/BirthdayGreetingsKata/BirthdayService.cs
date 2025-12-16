@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
 
@@ -6,17 +7,22 @@ namespace BirthdayGreetingsKata;
 
 public class BirthdayService
 {
-    public void SendGreetings(string fileName, OurDate ourDate,
-        string smtpHost, int smtpPort)
+    // Long parameter list
+    public void SendGreetings(string fileName, OurDate ourDate, string smtpHost, int smtpPort)
     {
         using var reader = new StreamReader(fileName);
         var str = "";
-        str = reader.ReadLine(); // skip header
+        str = reader.ReadLine(); // skip header - Smell
+        var employees = new List<Employee>();
         while ((str = reader.ReadLine()) != null)
         {
             var employeeData = str.Split(", ");
-            var employee = new Employee(employeeData[1], employeeData[0],
-                employeeData[2], employeeData[3]);
+            var employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
+            employees.Add(employee);
+        }
+
+        foreach (var employee in employees)
+        {
             if (employee.IsBirthday(ourDate))
             {
                 var recipient = employee.Email;
@@ -25,10 +31,11 @@ public class BirthdayService
                 var subject = "Happy Birthday!";
                 SendMessage(smtpHost, smtpPort, "sender@here.com", subject,
                     body, recipient);
-            }
+            }   
         }
     }
 
+    // Long parameter list
     private void SendMessage(string smtpHost, int smtpPort, string sender,
         string subject, string body, string recipient)
     {
