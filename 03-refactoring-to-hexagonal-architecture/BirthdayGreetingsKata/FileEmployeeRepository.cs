@@ -15,9 +15,7 @@ public class FileEmployeeRepository
 
     public List<Employee> GetAllEmployees()
     {
-        var lines = ReadAllLines();
-
-        return lines.Select(ToEmployee).ToList();
+        return ReadAllLines().Select(ToEmployee).ToList();
     }
 
     static Employee ToEmployee(string line)
