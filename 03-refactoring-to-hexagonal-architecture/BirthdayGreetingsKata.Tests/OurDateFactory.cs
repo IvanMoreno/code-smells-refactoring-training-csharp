@@ -1,6 +1,6 @@
 using System;
 
-namespace BirthdayGreetingsKata;
+namespace BirthdayGreetingsKata.Tests;
 
 public static class OurDateFactory
 {
