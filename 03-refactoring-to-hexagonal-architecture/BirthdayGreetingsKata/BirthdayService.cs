@@ -7,11 +7,6 @@ public class BirthdayService
 {
     readonly FileEmployeeRepository fileEmployeeRepository;
 
-    public BirthdayService() : this(new FileEmployeeRepository())
-    {
-        
-    }
-
     public BirthdayService(FileEmployeeRepository fileEmployeeRepository)
     {
         this.fileEmployeeRepository = fileEmployeeRepository;
