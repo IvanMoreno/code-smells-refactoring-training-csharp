@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BirthdayGreetingsKata;
 
@@ -16,13 +17,7 @@ public class FileEmployeeRepository
     {
         var lines = ReadAllLines();
 
-        var employees = new List<Employee>();
-        foreach (var line in lines)
-        {
-            employees.Add(ToEmployee(line));
-        }
-
-        return employees;
+        return lines.Select(ToEmployee).ToList();
     }
 
     static Employee ToEmployee(string line)
