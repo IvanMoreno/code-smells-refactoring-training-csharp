@@ -13,9 +13,9 @@ public class FileEmployeeRepository
         this.fileName = fileName;
     }
 
-    public List<Employee> GetAllEmployees()
+    public IEnumerable<Employee> GetAllEmployees()
     {
-        return ReadAllLines().Select(ToEmployee).ToList();
+        return ReadAllLines().Select(ToEmployee);
     }
 
     static Employee ToEmployee(string line)
@@ -24,16 +24,14 @@ public class FileEmployeeRepository
         return new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
     }
 
-    List<string> ReadAllLines()
+    IEnumerable<string> ReadAllLines()
     {
         using var reader = new StreamReader(fileName);
         reader.ReadLine(); // skip header - Smell
-        var lines = new List<string>();
+        
         while (reader.ReadLine() is { } str)
         {
-            lines.Add(str);
+            yield return str;
         }
-
-        return lines;
     }
 }
