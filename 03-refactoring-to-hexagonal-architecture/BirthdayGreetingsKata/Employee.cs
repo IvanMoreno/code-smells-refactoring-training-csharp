@@ -14,7 +14,7 @@ public class Employee
     {
         FirstName = firstName;
         _lastName = lastName;
-        _birthDate = new OurDate(birthDate);
+        _birthDate = OurDate.Create(birthDate);
         Email = email;
     }
 

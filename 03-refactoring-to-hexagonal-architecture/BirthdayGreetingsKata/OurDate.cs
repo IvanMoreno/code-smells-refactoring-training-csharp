@@ -6,9 +6,14 @@ public class OurDate
 {
     private readonly DateTime _date;
 
-    public OurDate(string yyyyMMdd)
+    OurDate(DateTime date)
     {
-        _date = DateTime.ParseExact(yyyyMMdd, "yyyy/MM/dd", null);
+        _date = date;
+    }
+
+    public static OurDate Create(string yyyyMMdd)
+    {
+        return new OurDate(DateTime.ParseExact(yyyyMMdd, "yyyy/MM/dd", null));
     }
 
     private int GetDay()
