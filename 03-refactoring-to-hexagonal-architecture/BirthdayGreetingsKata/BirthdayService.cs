@@ -5,7 +5,17 @@ namespace BirthdayGreetingsKata;
 
 public class BirthdayService
 {
-    readonly FileEmployeeRepository fileEmployeeRepository = new FileEmployeeRepository();
+    readonly FileEmployeeRepository fileEmployeeRepository;
+
+    public BirthdayService() : this(new FileEmployeeRepository())
+    {
+        
+    }
+
+    public BirthdayService(FileEmployeeRepository fileEmployeeRepository)
+    {
+        this.fileEmployeeRepository = fileEmployeeRepository;
+    }
 
     // Long parameter list
     public void SendGreetings(string fileName, OurDate ourDate, string smtpHost, int smtpPort)
