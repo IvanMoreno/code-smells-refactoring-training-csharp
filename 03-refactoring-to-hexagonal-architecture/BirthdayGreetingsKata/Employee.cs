@@ -9,12 +9,11 @@ public class Employee
     public string FirstName { get; }
     public string Email { get; }
 
-    public Employee(string firstName, string lastName, string birthDate,
-        string email)
+    public Employee(string firstName, string lastName, string email, OurDate birthDate)
     {
         FirstName = firstName;
         _lastName = lastName;
-        _birthDate = OurDateFactory.Create(birthDate);
+        _birthDate = birthDate;
         Email = email;
     }
 

@@ -32,6 +32,7 @@ public class FileEmployeeRepository : EmployeeRepository
     static Employee ToEmployee(string line)
     {
         var employeeData = line.Split(", ");
-        return new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
+        string birthDate = employeeData[2];
+        return new Employee(employeeData[1], employeeData[0], employeeData[3], OurDateFactory.Create(birthDate));
     }
 }

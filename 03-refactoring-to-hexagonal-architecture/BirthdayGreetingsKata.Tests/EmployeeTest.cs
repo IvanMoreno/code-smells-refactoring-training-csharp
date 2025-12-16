@@ -7,7 +7,7 @@ public class EmployeeTest
     [Test]
     public void Test_Birthday()
     {
-        var employee = new Employee("foo", "bar", "1990/01/31", "a@b.c");
+        var employee = new Employee("foo", "bar", "a@b.c", OurDateFactory.Create("1990/01/31"));
         Assert.That(employee.IsBirthday(OurDateFactory.Create("2008/01/30")),
             Is.False,
             "not his birthday");
