@@ -10,16 +10,7 @@ public class BirthdayService
     // Long parameter list
     public void SendGreetings(string fileName, OurDate ourDate, string smtpHost, int smtpPort)
     {
-        using var reader = new StreamReader(fileName);
-        var str = "";
-        str = reader.ReadLine(); // skip header - Smell
-        var employees = new List<Employee>();
-        while ((str = reader.ReadLine()) != null)
-        {
-            var employeeData = str.Split(", ");
-            var employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
-            employees.Add(employee);
-        }
+        var employees = GetAllEmployees(fileName);
 
         foreach (var employee in employees)
         {
@@ -33,6 +24,22 @@ public class BirthdayService
                     body, recipient);
             }   
         }
+    }
+
+    static List<Employee> GetAllEmployees(string fileName)
+    {
+        using var reader = new StreamReader(fileName);
+        var str = "";
+        str = reader.ReadLine(); // skip header - Smell
+        var employees = new List<Employee>();
+        while ((str = reader.ReadLine()) != null)
+        {
+            var employeeData = str.Split(", ");
+            var employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
+            employees.Add(employee);
+        }
+
+        return employees;
     }
 
     // Long parameter list
