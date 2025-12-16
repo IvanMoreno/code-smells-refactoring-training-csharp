@@ -5,8 +5,21 @@ namespace BirthdayGreetingsKata;
 
 public class FileEmployeeRepository
 {
+    string fileName;
+
+    public FileEmployeeRepository()
+    {
+        
+    }
+
+    public FileEmployeeRepository(string fileName)
+    {
+        this.fileName = fileName;
+    }
+
     public List<Employee> GetAllEmployees(string fileName)
     {
+        this.fileName = fileName;
         using var reader = new StreamReader(fileName);
         var str = "";
         str = reader.ReadLine(); // skip header - Smell
