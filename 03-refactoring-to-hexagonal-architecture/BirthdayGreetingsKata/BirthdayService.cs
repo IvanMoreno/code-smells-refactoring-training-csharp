@@ -62,7 +62,7 @@ public class BirthdayService
 
     static void Main(string[] args)
     {
-        var service = new BirthdayService(new FileEmployeeRepository());
+        var service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"));
         try
         {
             service.SendGreetings("employee_data.txt",

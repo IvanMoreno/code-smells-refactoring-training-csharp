@@ -19,7 +19,6 @@ public class FileEmployeeRepository
 
     public List<Employee> GetAllEmployees(string fileName)
     {
-        this.fileName = fileName;
         using var reader = new StreamReader(fileName);
         var str = "";
         str = reader.ReadLine(); // skip header - Smell
