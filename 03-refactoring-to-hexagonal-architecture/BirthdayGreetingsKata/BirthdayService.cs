@@ -5,28 +5,9 @@ using System.Net.Mail;
 
 namespace BirthdayGreetingsKata;
 
-public class BirthdayService
+public class FileEmployeeRepository
 {
-    // Long parameter list
-    public void SendGreetings(string fileName, OurDate ourDate, string smtpHost, int smtpPort)
-    {
-        var employees = GetAllEmployees(fileName);
-
-        foreach (var employee in employees)
-        {
-            if (employee.IsBirthday(ourDate))
-            {
-                var recipient = employee.Email;
-                var body = "Happy Birthday, dear %NAME%!".Replace("%NAME%",
-                    employee.FirstName);
-                var subject = "Happy Birthday!";
-                SendMessage(smtpHost, smtpPort, "sender@here.com", subject,
-                    body, recipient);
-            }   
-        }
-    }
-
-    static List<Employee> GetAllEmployees(string fileName)
+    public List<Employee> GetAllEmployees(string fileName)
     {
         using var reader = new StreamReader(fileName);
         var str = "";
@@ -40,6 +21,30 @@ public class BirthdayService
         }
 
         return employees;
+    }
+}
+
+public class BirthdayService
+{
+    readonly FileEmployeeRepository fileEmployeeRepository = new FileEmployeeRepository();
+
+    // Long parameter list
+    public void SendGreetings(string fileName, OurDate ourDate, string smtpHost, int smtpPort)
+    {
+        var employees = fileEmployeeRepository.GetAllEmployees(fileName);
+
+        foreach (var employee in employees)
+        {
+            if (employee.IsBirthday(ourDate))
+            {
+                var recipient = employee.Email;
+                var body = "Happy Birthday, dear %NAME%!".Replace("%NAME%",
+                    employee.FirstName);
+                var subject = "Happy Birthday!";
+                SendMessage(smtpHost, smtpPort, "sender@here.com", subject,
+                    body, recipient);
+            }   
+        }
     }
 
     // Long parameter list
