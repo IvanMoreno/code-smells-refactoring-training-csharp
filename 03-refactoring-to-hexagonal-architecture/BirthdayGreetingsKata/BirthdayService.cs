@@ -5,9 +5,9 @@ namespace BirthdayGreetingsKata;
 
 public class BirthdayService
 {
-    readonly FileEmployeeRepository employeeRepository;
+    readonly EmployeeRepository employeeRepository;
 
-    public BirthdayService(FileEmployeeRepository employeeRepository)
+    public BirthdayService(EmployeeRepository employeeRepository)
     {
         this.employeeRepository = employeeRepository;
     }
