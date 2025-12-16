@@ -65,7 +65,7 @@ public class BirthdayService
         var service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"));
         try
         {
-            service.SendGreetings(OurDate.Create("2008/10/08"), "localhost", 25);
+            service.SendGreetings(OurDateFactory.Create("2008/10/08"), "localhost", 25);
         }
         catch (Exception e)
         {

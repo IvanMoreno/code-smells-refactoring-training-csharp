@@ -7,10 +7,10 @@ public class OurDateTest
     [Test]
     public void Is_Same_Date()
     {
-        var ourDate = OurDate.Create("1789/01/24");
-        var sameDay = OurDate.Create("2001/01/24");
-        var notSameDay = OurDate.Create("1789/01/25");
-        var notSameMonth = OurDate.Create("1789/02/24");
+        var ourDate = OurDateFactory.Create("1789/01/24");
+        var sameDay = OurDateFactory.Create("2001/01/24");
+        var notSameDay = OurDateFactory.Create("1789/01/25");
+        var notSameMonth = OurDateFactory.Create("1789/02/24");
 
         Assert.That(ourDate.IsSameDay(sameDay), Is.True, "same");
         Assert.That(ourDate.IsSameDay(notSameDay), Is.False, "not same day");
