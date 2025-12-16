@@ -15,7 +15,7 @@ public class BirthdayService
     // Long parameter list
     public void SendGreetings(string fileName, OurDate ourDate, string smtpHost, int smtpPort)
     {
-        var employees = employeeRepository.GetAllEmployees(fileName);
+        var employees = employeeRepository.GetAllEmployees();
 
         foreach (var employee in employees)
         {

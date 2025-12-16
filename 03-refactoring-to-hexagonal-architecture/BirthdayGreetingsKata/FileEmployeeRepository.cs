@@ -5,14 +5,14 @@ namespace BirthdayGreetingsKata;
 
 public class FileEmployeeRepository
 {
-    string fileName;
+    readonly string fileName;
 
     public FileEmployeeRepository(string fileName)
     {
         this.fileName = fileName;
     }
 
-    public List<Employee> GetAllEmployees(string fileName)
+    public List<Employee> GetAllEmployees()
     {
         using var reader = new StreamReader(fileName);
         var str = "";
