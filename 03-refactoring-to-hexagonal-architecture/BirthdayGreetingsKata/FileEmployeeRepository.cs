@@ -7,11 +7,6 @@ public class FileEmployeeRepository
 {
     string fileName;
 
-    public FileEmployeeRepository()
-    {
-        
-    }
-
     public FileEmployeeRepository(string fileName)
     {
         this.fileName = fileName;
