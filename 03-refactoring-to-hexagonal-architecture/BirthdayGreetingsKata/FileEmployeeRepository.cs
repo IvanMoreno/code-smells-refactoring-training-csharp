@@ -14,6 +14,25 @@ public class FileEmployeeRepository
 
     public List<Employee> GetAllEmployees()
     {
+        var lines = ReadAllLines();
+
+        var employees = new List<Employee>();
+        foreach (var line in lines)
+        {
+            employees.Add(ToEmployee(line));
+        }
+
+        return employees;
+    }
+
+    static Employee ToEmployee(string line)
+    {
+        var employeeData = line.Split(", ");
+        return new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
+    }
+
+    List<string> ReadAllLines()
+    {
         using var reader = new StreamReader(fileName);
         reader.ReadLine(); // skip header - Smell
         var lines = new List<string>();
@@ -22,14 +41,6 @@ public class FileEmployeeRepository
             lines.Add(str);
         }
 
-        var employees = new List<Employee>();
-        foreach (var line in lines)
-        {
-            var employeeData = line.Split(", ");
-            var employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
-            employees.Add(employee);
-        }
-
-        return employees;
+        return lines;
     }
 }
