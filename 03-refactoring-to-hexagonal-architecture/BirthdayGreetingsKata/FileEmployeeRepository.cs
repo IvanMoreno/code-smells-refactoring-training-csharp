@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BirthdayGreetingsKata;
 
-public class FileEmployeeRepository
+public class FileEmployeeRepository : EmployeeRepository
 {
     readonly string fileName;
 
