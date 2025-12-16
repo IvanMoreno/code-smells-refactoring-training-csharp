@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,7 +33,7 @@ public class FileEmployeeRepository : EmployeeRepository
     static Employee ToEmployee(string line)
     {
         var employeeData = line.Split(", ");
-        string birthDate = employeeData[2];
-        return new Employee(employeeData[1], employeeData[0], employeeData[3], OurDateFactory.Create(birthDate));
+        var birthDate = new OurDate(DateTime.ParseExact(employeeData[2], "yyyy/MM/dd", null));
+        return new Employee(employeeData[1], employeeData[0], employeeData[3], birthDate);
     }
 }
