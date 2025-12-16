@@ -15,10 +15,9 @@ public class FileEmployeeRepository
     public List<Employee> GetAllEmployees()
     {
         using var reader = new StreamReader(fileName);
-        var str = "";
-        str = reader.ReadLine(); // skip header - Smell
+        reader.ReadLine(); // skip header - Smell
         var employees = new List<Employee>();
-        while ((str = reader.ReadLine()) != null)
+        while (reader.ReadLine() is { } str)
         {
             var employeeData = str.Split(", ");
             var employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
