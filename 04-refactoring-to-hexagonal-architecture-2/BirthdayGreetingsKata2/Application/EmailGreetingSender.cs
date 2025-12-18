@@ -17,19 +17,18 @@ public class EmailGreetingSender
         _sender = sender;
     }
 
-    public void Send(List<GreetingMessage> messages, string smtpHost, int smtpPort, string sender)
+    public void Send(List<GreetingMessage> messages)
     {
         foreach (var message in messages)
         {
             var recipient = message.To();
             var body = message.Text();
             var subject = message.Subject();
-            SendMessage(smtpHost, smtpPort, sender, subject, body, recipient);
+            SendMessage(subject, body, recipient);
         }
     }
 
-    void SendMessage(string smtpHost, int smtpPort, string sender,
-        string subject, string body, string recipient)
+    void SendMessage(string subject, string body, string recipient)
     {
         // Create a mail session
         var smtpClient = new SmtpClient(_smtpHost)
