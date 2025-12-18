@@ -21,14 +21,11 @@ public class EmailGreetingSender : GreetingSender
     {
         foreach (var message in messages)
         {
-            var recipient = message.To();
-            var body = message.Text();
-            var subject = message.Subject();
-            SendMessage(subject, body, recipient);
+            SendMessage(message);
         }
     }
 
-    void SendMessage(string subject, string body, string recipient)
+    void SendMessage(GreetingMessage message)
     {
         // Create a mail session
         var smtpClient = new SmtpClient(_smtpHost)
@@ -40,10 +37,10 @@ public class EmailGreetingSender : GreetingSender
         var msg = new MailMessage
         {
             From = new MailAddress(_sender),
-            Subject = subject,
-            Body = body
+            Subject = message.Subject(),
+            Body = message.Text()
         };
-        msg.To.Add(recipient);
+        msg.To.Add(message.To());
 
         // Send the message
         SendMessage(msg, smtpClient);
