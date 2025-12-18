@@ -6,6 +6,10 @@ namespace BirthdayGreetingsKata2.Application;
 
 public class EmailGreetingSender
 {
+    string _smtpHost;
+    int _smtpPort;
+    string _sender;
+
     public void Send(List<GreetingMessage> messages, string smtpHost, int smtpPort, string sender)
     {
         foreach (var message in messages)
