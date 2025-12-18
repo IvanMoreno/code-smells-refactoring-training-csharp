@@ -56,7 +56,7 @@ public class AcceptanceTest
     {
         var today = OurDate("2008/10/08");
 
-        _service.SendGreetings(today, SmtpHost, SmtpPort, From);
+        _service.SendGreetings(today);
 
         Assert.That(_messagesSent, Has.Exactly(1).Items);
         var message = _messagesSent[0];
@@ -71,7 +71,7 @@ public class AcceptanceTest
     {
         var today = OurDate("2008/01/01");
 
-        _service.SendGreetings(today, SmtpHost, SmtpPort, From);
+        _service.SendGreetings(today);
 
         Assert.That(_messagesSent, Is.Empty);
     }
