@@ -53,7 +53,7 @@ public class AcceptanceTest
     {
         _messagesSent = new List<MailMessage>();
         _service = new BirthdayServiceForTesting(_messagesSent,
-            new FileEmployeesRepository(EmployeesFilePath), new());
+            new FileEmployeesRepository(EmployeesFilePath), new EmailGreetingSenderForTesting(_messagesSent));
     }
 
     [Test]
