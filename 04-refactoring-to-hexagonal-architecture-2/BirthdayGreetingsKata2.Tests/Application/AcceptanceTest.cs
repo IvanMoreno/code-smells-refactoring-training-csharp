@@ -33,6 +33,21 @@ public class AcceptanceTest
         }
     }
 
+    private class EmailGreetingSenderForTesting : EmailGreetingSender
+    {
+        private readonly List<MailMessage> _messages;
+
+        public EmailGreetingSenderForTesting(List<MailMessage> messages)
+        {
+            _messages = messages;
+        }
+
+        public override void SendMessage(MailMessage msg, SmtpClient smtpClient)
+        {
+            _messages.Add(msg);
+        }
+    }
+
     [SetUp]
     public void SetUp()
     {

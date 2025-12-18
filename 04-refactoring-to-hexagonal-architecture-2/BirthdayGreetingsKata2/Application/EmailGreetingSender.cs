@@ -4,7 +4,8 @@ namespace BirthdayGreetingsKata2.Application;
 
 public class EmailGreetingSender
 {
-    public void SendMessage(MailMessage msg, SmtpClient smtpClient)
+    // made protected for testing :-(
+    public virtual void SendMessage(MailMessage msg, SmtpClient smtpClient)
     {
         smtpClient.Send(msg);
     }
