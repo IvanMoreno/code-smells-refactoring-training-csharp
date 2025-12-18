@@ -26,11 +26,6 @@ public class AcceptanceTest
         {
             _messages = messages;
         }
-
-        protected override void SendMessage(MailMessage msg, SmtpClient smtpClient)
-        {
-            _messages.Add(msg);
-        }
     }
 
     private class EmailGreetingSenderForTesting : EmailGreetingSender

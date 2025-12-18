@@ -64,10 +64,4 @@ public class BirthdayService
         // Send the message
         _emailGreetingSender.SendMessage(msg, smtpClient);
     }
-
-    // made protected for testing :-(
-    protected virtual void SendMessage(MailMessage msg, SmtpClient smtpClient)
-    {
-        _emailGreetingSender.SendMessage(msg, smtpClient);
-    }
 }
