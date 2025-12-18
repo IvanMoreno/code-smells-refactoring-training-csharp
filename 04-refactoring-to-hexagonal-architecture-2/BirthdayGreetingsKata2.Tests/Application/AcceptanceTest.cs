@@ -32,7 +32,7 @@ public class AcceptanceTest
     {
         private readonly List<MailMessage> _messages;
 
-        public EmailGreetingSenderForTesting(List<MailMessage> messages)
+        public EmailGreetingSenderForTesting(List<MailMessage> messages, string smtpHost, int smtpPort, string sender) : base(smtpHost, smtpPort, sender)
         {
             _messages = messages;
         }
@@ -48,7 +48,7 @@ public class AcceptanceTest
     {
         _messagesSent = new List<MailMessage>();
         _service = new BirthdayServiceForTesting(_messagesSent,
-            new FileEmployeesRepository(EmployeesFilePath), new EmailGreetingSenderForTesting(_messagesSent));
+            new FileEmployeesRepository(EmployeesFilePath), new EmailGreetingSenderForTesting(_messagesSent, SmtpHost, SmtpPort, From));
     }
 
     [Test]

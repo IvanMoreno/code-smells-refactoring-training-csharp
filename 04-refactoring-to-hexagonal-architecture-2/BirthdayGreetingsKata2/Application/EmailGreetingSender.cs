@@ -6,9 +6,16 @@ namespace BirthdayGreetingsKata2.Application;
 
 public class EmailGreetingSender
 {
-    string _smtpHost;
-    int _smtpPort;
-    string _sender;
+    readonly string _smtpHost;
+    readonly int _smtpPort;
+    readonly string _sender;
+
+    public EmailGreetingSender(string smtpHost, int smtpPort, string sender)
+    {
+        _smtpHost = smtpHost;
+        _smtpPort = smtpPort;
+        _sender = sender;
+    }
 
     public void Send(List<GreetingMessage> messages, string smtpHost, int smtpPort, string sender)
     {
