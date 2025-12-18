@@ -21,8 +21,8 @@ public class AcceptanceTest
     {
         private readonly List<MailMessage> _messages;
 
-        public BirthdayServiceForTesting(List<MailMessage> messages, IEmployeesRepository employeesRepository, EmailGreetingSender emailGreetingSender) : base(
-            employeesRepository, emailGreetingSender)
+        public BirthdayServiceForTesting(List<MailMessage> messages, IEmployeesRepository employeesRepository, EmailGreetingSender greetingSender) : base(
+            employeesRepository, greetingSender)
         {
             _messages = messages;
         }

@@ -1,23 +1,22 @@
 using System.Collections.Generic;
-using System.Net.Mail;
 using BirthdayGreetingsKata2.Core;
 
 namespace BirthdayGreetingsKata2.Application;
 
 public class BirthdayService
 {
-    private readonly IEmployeesRepository _employeesRepository;
-    readonly EmailGreetingSender _emailGreetingSender;
+    readonly IEmployeesRepository _employeesRepository;
+    readonly GreetingSender _greetingSender;
 
-    public BirthdayService(IEmployeesRepository employeesRepository, EmailGreetingSender emailGreetingSender)
+    public BirthdayService(IEmployeesRepository employeesRepository, GreetingSender greetingSender)
     {
         _employeesRepository = employeesRepository;
-        _emailGreetingSender = emailGreetingSender;
+        _greetingSender = greetingSender;
     }
 
     public void SendGreetings(OurDate date)
     {
-        _emailGreetingSender.Send(GreetingMessagesFor(EmployeesHavingBirthday(date)));
+        _greetingSender.Send(GreetingMessagesFor(EmployeesHavingBirthday(date)));
     }
 
     private static List<GreetingMessage> GreetingMessagesFor(IEnumerable<Employee> employees)
