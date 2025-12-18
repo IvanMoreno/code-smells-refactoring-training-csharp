@@ -7,10 +7,12 @@ namespace BirthdayGreetingsKata2.Application;
 public class BirthdayService
 {
     private readonly IEmployeesRepository _employeesRepository;
+    readonly EmailGreetingSender _emailGreetingSender;
 
-    public BirthdayService(IEmployeesRepository employeesRepository)
+    public BirthdayService(IEmployeesRepository employeesRepository, EmailGreetingSender emailGreetingSender)
     {
         _employeesRepository = employeesRepository;
+        _emailGreetingSender = emailGreetingSender;
     }
 
     public void SendGreetings(OurDate date, string smtpHost, int smtpPort, string sender)

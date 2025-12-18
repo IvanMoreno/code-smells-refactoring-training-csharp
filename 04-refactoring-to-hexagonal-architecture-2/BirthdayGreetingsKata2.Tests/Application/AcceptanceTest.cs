@@ -22,7 +22,7 @@ public class AcceptanceTest
         private readonly List<MailMessage> _messages;
 
         public BirthdayServiceForTesting(List<MailMessage> messages, IEmployeesRepository employeesRepository) : base(
-            employeesRepository)
+            employeesRepository, new())
         {
             _messages = messages;
         }

@@ -13,8 +13,7 @@ public class App
 
     static void Main(string[] args)
     {
-        var service = new BirthdayService(
-            new FileEmployeesRepository(EmployeesFilePath));
+        var service = new BirthdayService(new FileEmployeesRepository(EmployeesFilePath), new EmailGreetingSender());
         try
         {
             var today = new OurDate(new DateTime());
