@@ -17,7 +17,7 @@ public class BirthdayService
 
     public void SendGreetings(OurDate date, string smtpHost, int smtpPort, string sender)
     {
-        Send(GreetingMessagesFor(EmployeesHavingBirthday(date)),
+        _emailGreetingSender.Send(GreetingMessagesFor(EmployeesHavingBirthday(date)),
             smtpHost, smtpPort, sender);
     }
 
@@ -30,16 +30,5 @@ public class BirthdayService
     {
         return _employeesRepository.GetAll()
             .FindAll(employee => employee.IsBirthday(today));
-    }
-
-    private void Send(List<GreetingMessage> messages, string smtpHost, int smtpPort, string sender)
-    {
-        foreach (var message in messages)
-        {
-            var recipient = message.To();
-            var body = message.Text();
-            var subject = message.Subject();
-            _emailGreetingSender.SendMessage(smtpHost, smtpPort, sender, subject, body, recipient);
-        }
     }
 }
