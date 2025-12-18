@@ -26,7 +26,6 @@ public class BirthdayService
 
     private IEnumerable<Employee> EmployeesHavingBirthday(OurDate today)
     {
-        return _employeesRepository.GetAll()
-            .FindAll(employee => employee.IsBirthday(today));
+        return _employeesRepository.GetAll().FindAll(employee => employee.IsBirthday(today));
     }
 }
