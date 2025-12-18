@@ -32,15 +32,15 @@ public class EmailGreetingSender
         string subject, string body, string recipient)
     {
         // Create a mail session
-        var smtpClient = new SmtpClient(smtpHost)
+        var smtpClient = new SmtpClient(_smtpHost)
         {
-            Port = smtpPort
+            Port = _smtpPort
         };
 
         // Construct the message
         var msg = new MailMessage
         {
-            From = new MailAddress(sender),
+            From = new MailAddress(_sender),
             Subject = subject,
             Body = body
         };
